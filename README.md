@@ -25,14 +25,15 @@ Du coté CSS:
 Point à améliorer, si besoin à l'avenir:
 
 - La responsivité du site,
-- Amelioration de la Navbar, (version mobile, hamburger menu, etc)
-- De nombreux composants pouvant êtres crées comme un Bouton.js
+- Révision du tableau.
+- Amelioration de la Navbar, (version mobile, hamburger menu, etc).
+- De nombreux composants pouvant êtres crées comme un Bouton.js.
 - Les points bonus n'ont pas été réalisés.
-- Rajouts de d'autres pages, telles qu'une d'historique (pour les tableaux)
-- Ajout du Footer
-- Tests unitaires
+- Rajouts de d'autres pages, telles qu'une d'historique (pour les tableaux).
+- Ajout du Footer.
+- Tests unitaires.
 - Un seul commit a été réalisé, il aurait fallu en faire plus.
-- Ajout de plus de commentaires
+- Ajout de plus de commentaires.
 
 Ressource externes:
 
