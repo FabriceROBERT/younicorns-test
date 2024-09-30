@@ -2,7 +2,7 @@ Le projet a été créé avec react en javascript le 28/09/2024 et rendu le 30/0
 Le projet a réalisé avec les attentes minimales du test technique. Et peut être amélioré en 2 second temps dans le cadre d'une revision demandée.
 
 Le site visible sur le site :
-ainsi que sur GITHUB : à la demande de collaborateurs. (le ripo est privé pour le moment)
+ainsi que sur GITHUB : https://github.com/FabriceROBERT/younicorns-test à la demande de collaborateurs. (le ripo est privé pour le moment)
 
 Pour lancer le projet il faut installer les dépendances et lancer le serveur de développement (avec le gestionnaire de paquet de votre choix).
 
