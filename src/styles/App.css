@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body {
+  background-image: url("../assets/img/Younicorns_Background.png");
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

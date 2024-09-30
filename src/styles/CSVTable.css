@@ -1,0 +1,50 @@
+.imageContainer {
+  position: relative;
+  /* background-color: red; */
+  width: 500px;
+  height: 160px;
+}
+
+.table {
+  table-layout: fixed;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px 20px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.tableHeader {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.thead {
+  border: none;
+}
+
+.thead:hover {
+  cursor: pointer;
+}
+.tbody {
+  border: none;
+}
+
+.tableContainer {
+  animation: fadeIn 0.5s forwards 0.5s;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.emptyContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

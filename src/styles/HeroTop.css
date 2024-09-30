@@ -1,0 +1,25 @@
+.heroTop {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px 0;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s forwards 1s;
+}
+
+.fade-in-delay {
+  opacity: 0;
+  animation: fadeIn 2s forwards 1.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+Le projet a été créé avec react en javascript le 28/09/2024 et rendu le 30/09/2024, dans le cadre du test technique pour le poste de développeur front-end en alternance chez Younicorns.
+Le projet a réalisé avec les attentes minimales du test technique. Et peut être amélioré en 2 second temps dans le cadre d'une revision demandée.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Le site visible sur le site :
+ainsi que sur GITHUB : à la demande de collaborateurs. (le ripo est privé pour le moment)
 
-## Available Scripts
+Pour lancer le projet il faut installer les dépendances et lancer le serveur de développement (avec le gestionnaire de paquet de votre choix).
 
-In the project directory, you can run:
+npm install
+npm run start
 
-### `npm start`
+Approche technique :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Je n'avais pas eu d'idée de design précis, je me suis donc basé sur le design du site officiel de Younicorns.
+avec les espaces et marges à vue d'oeil.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+J'ai également créé et utilisé pas mal de composants telle que la typographie, container comme à mon habitude.
 
-### `npm test`
+Du coté CSS:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- j'ai utilisé figma pour obtenir le background du site exclusivement.
+- J'ai utilisé aucun framework CSS, uniquement des balises HTML5 et des classes CSS. Pour ce petit projet, j'ai préféré ajouter fichier CSS pour chaque page et/ou composant, afin de pouvoir les réutiliser plus facilement.
+- Les animations ont été inspiré de d'un ancien projet : https://cp-company-front-end.vercel.app/
 
-### `npm run build`
+Point à améliorer, si besoin à l'avenir:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- La responsivité du site,
+- Amelioration de la Navbar, (version mobile, hamburger menu, etc)
+- De nombreux composants pouvant êtres crées comme un Bouton.js
+- Les points bonus n'ont pas été réalisés.
+- Rajouts de d'autres pages, telles qu'une d'historique (pour les tableaux)
+- Ajout du Footer
+- Tests unitaires
+- Un seul commit a été réalisé, il aurait fallu en faire plus.
+- Ajout de plus de commentaires
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Ressource externes:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+internet, Stackoverflow (Analyse les données d'un fichier, tableaux), Figma (background), site Younicorns (couleurs), Vercel (déploiement)

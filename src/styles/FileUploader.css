@@ -1,0 +1,35 @@
+/* le but est de remplacer l'input par les propriétés du label, afin de pouvoir le customiser par la suite */
+
+#mainInput[type="file"] {
+  display: none;
+}
+
+.mainLabel {
+  outline: none;
+  border: 1px solid #ccc;
+  background-color: #c72c6c;
+  display: inline-block;
+  padding: 30px;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: all 0.3s;
+  opacity: 0;
+  animation: LabelEaseIn 2s ease-in-out forwards 1.75s;
+}
+
+.mainLabel:hover {
+  box-shadow: 0 20px 25px -5px #ccb9ff, 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+@keyframes LabelEaseIn {
+  0% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+
+    opacity: 1;
+    visibility: visible;
+  }
+}

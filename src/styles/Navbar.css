@@ -1,0 +1,55 @@
+.navbarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transform: translateY(-100px);
+  /* background-color: #a74747; */
+  animation: NavbarFadeIn 2s ease-in-out forwards 2000ms;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  /* padding: 0 20px 0 20px; */
+  /* background-color: white; */
+  width: 100%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.logoContainer {
+  height: 100px;
+  width: 150px;
+}
+
+.logoContainer img {
+  height: 100%;
+  width: 100%;
+}
+
+.navbarSection {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@keyframes NavbarFadeIn {
+  0% {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+
+    opacity: 1;
+    visibility: visible;
+  }
+}
