@@ -1,7 +1,7 @@
 Le projet a été créé avec react en javascript le 28/09/2024 et rendu le 30/09/2024, dans le cadre du test technique pour le poste de développeur front-end en alternance chez Younicorns.
 Le projet a réalisé avec les attentes minimales du test technique. Et peut être amélioré en 2 second temps dans le cadre d'une revision demandée.
 
-Le site visible sur le site :
+Le site visible sur le site : https://younicorns-test.vercel.app/
 ainsi que sur GITHUB : https://github.com/FabriceROBERT/younicorns-test à la demande de collaborateurs. (le ripo est privé pour le moment)
 
 Pour lancer le projet il faut installer les dépendances et lancer le serveur de développement (avec le gestionnaire de paquet de votre choix).
@@ -25,14 +25,15 @@ Du coté CSS:
 Point à améliorer, si besoin à l'avenir:
 
 - La responsivité du site,
-- Amelioration de la Navbar, (version mobile, hamburger menu, etc)
-- De nombreux composants pouvant êtres crées comme un Bouton.js
+- Révision du tableau.
+- Amelioration de la Navbar, (version mobile, hamburger menu, etc).
+- De nombreux composants pouvant êtres crées comme un Bouton.js.
 - Les points bonus n'ont pas été réalisés.
-- Rajouts de d'autres pages, telles qu'une d'historique (pour les tableaux)
-- Ajout du Footer
-- Tests unitaires
+- Rajouts de d'autres pages, telles qu'une d'historique (pour les tableaux).
+- Ajout du Footer.
+- Tests unitaires.
 - Un seul commit a été réalisé, il aurait fallu en faire plus.
-- Ajout de plus de commentaires
+- Ajout de plus de commentaires.
 
 Ressource externes:
 
