@@ -6,16 +6,22 @@ import Typography from "./Typography";
 // FileUploader est un composant qui permet à l'utilisateur de télécharger un fichier CSV.
 export default function FileUploader({ onFileUpload }) {
   const handleFileUpload = (event) => {
-    // Récupérer le fichier CSV téléchargé
+    //Va récupére le fichier CSV téléchargé
     const file = event.target.files[0];
-    // Vérifier si le fichier existe
     if (file) {
-      // Vérifier si le fichier est un fichier CSV
+      // Vérifie si le fichier est un fichier CSV
       if (file.type === "text/csv") {
-        // Lire le fichier CSV
+        // Lis le fichier CSV
+
+        // Si la taille du fichier dépasse une limite (par exemple 5MB)
+        const maxSize = 5;
+        if (file.size > maxSize * 1024 * 1024) {
+          toast.error(`Le fichier dépasse la taille maximale de ${maxSize}MB.`);
+          return;
+        }
         const reader = new FileReader();
         reader.onload = (event) => {
-          // Appeler la fonction onFileUpload avec le contenu du fichier CSV
+          // Cela appel la fonction onFileUpload avec le contenu du fichier CSV
           const fileData = event.target.result;
           console.log(fileData);
           onFileUpload(fileData);

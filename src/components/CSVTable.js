@@ -58,7 +58,10 @@ export default function CSVTable({ data }) {
                 key={header}
                 onClick={() => handleSort(header)}
               >
-                {header}
+                {header} <br />{" "}
+                <Typography color="primary" variant="description">
+                  Filtrer
+                </Typography>
               </th>
             ))}
           </tr>
@@ -80,9 +83,12 @@ export default function CSVTable({ data }) {
           )}
         </tbody>
       </table>
-      {data.length > 0 && (
-        <div> Nombre de lignes de ce tableau : {data.length} </div>
-      )}
+      {data.length > 0 &&
+        (data.length === 1 ? (
+          <div> Le tableau contient {data.length} ligne </div>
+        ) : (
+          <div> Nombre de lignes de ce tableau : {data.length} </div>
+        ))}
     </div>
   );
 }

@@ -53,3 +53,15 @@
     visibility: visible;
   }
 }
+
+@media (max-width: 768px) {
+  .navbar * {
+    font-size: 8px;
+    gap: 10px;
+  }
+
+  .logoContainer {
+    height: 50px;
+    width: 75px;
+  }
+}
