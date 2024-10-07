@@ -16,7 +16,7 @@ export default function CSVTable({ initialData }) {
   });
   const [filterText, setFilterText] = React.useState("");
   const [draggingCell, setDraggingCell] = React.useState(null); // État pour suivre la cellule en cours de déplacement
-const [exportHistory, setExportHistory] = React.useState([]); // État pour l'historique des fichiers exportés
+  const [exportHistory, setExportHistory] = React.useState([]); // État pour l'historique des fichiers exportés
 
   // Cette fonction me permet d'ajouter une ligne au tableau
   const newRowTemplate = Object.keys(initialData[0] || {}).reduce(
@@ -139,7 +139,7 @@ const [exportHistory, setExportHistory] = React.useState([]); // État pour l'hi
 
   // Fonction pour restaurer les données d'un historique sélectionné
   const restoreDataFromHistory = (historyItem) => {
-    console.log("Restoring data:", historyItem.data); // Log pour vérifier les données
+    console.log("Restoring data:", historyItem.data);
     setData(historyItem.data); // Restaure les données du tableau
     setFilename(historyItem.filename.replace(".csv", "")); // Met à jour le nom de fichier sans l'extension
   };
@@ -173,6 +173,7 @@ const [exportHistory, setExportHistory] = React.useState([]); // État pour l'hi
       )}
       <table className="table" border="1" cellPadding="8" cellSpacing="0">
         <thead>
+          {/* NOM, Prenom, Age */}
           <tr>
             {headers.map((header) => (
               <th
@@ -259,15 +260,20 @@ const [exportHistory, setExportHistory] = React.useState([]); // État pour l'hi
             </Button>
           </div>
           <div>
-            <Typography variant="subtitle">
+            <Typography
+              variant="caption"
+              color="primary"
+              className="historyTitle"
+            >
               Historique des téléchargements:
             </Typography>
             <ul>
               {exportHistory.map((historyItem, index) => (
                 <li
+                  className="exportHistory"
                   key={index}
                   onClick={() => restoreDataFromHistory(historyItem)}
-                  style={{ cursor: "pointer", color: "blue" }}
+                  style={{ cursor: "pointer", marginTop: "20px" }}
                 >
                   {historyItem.filename}
                 </li>

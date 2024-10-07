@@ -53,4 +53,5 @@ Dans cette nouvelle nouvelle version, j'ai ajouté des fonctionnalités:
 - Ajout du drag and drop
 - Ajout d'un bouton pour une nouvelle ligne
 - Tests techniques réalisés
+  -Histoire des téléchargements
 - Ajout du bouton up (en bas à droite)
