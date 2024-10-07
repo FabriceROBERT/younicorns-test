@@ -16,6 +16,7 @@ export default function CSVTable({ initialData }) {
   });
   const [filterText, setFilterText] = React.useState("");
   const [draggingCell, setDraggingCell] = React.useState(null); // État pour suivre la cellule en cours de déplacement
+const [exportHistory, setExportHistory] = React.useState([]); // État pour l'historique des fichiers exportés
 
   // Cette fonction me permet d'ajouter une ligne au tableau
   const newRowTemplate = Object.keys(initialData[0] || {}).reduce(
@@ -23,12 +24,11 @@ export default function CSVTable({ initialData }) {
     {}
   );
 
-  // Cette fonction me permet de supprimer une ligne du tableau
   const handleAddRow = () => {
     setData([...data, { ...newRowTemplate }]);
   };
 
-  // Fonction pour supprimer une ligne
+  // Cette fonction me permet de supprimer une ligne du tableau
   const handleDeleteRow = (rowIndex) => {
     const updatedData = data.filter((_, index) => index !== rowIndex);
     setData(updatedData);
@@ -37,12 +37,11 @@ export default function CSVTable({ initialData }) {
   // Fonction pour dupliquer une ligne et l'ajouter juste après la ligne sélectionnée
   const handleDuplicateRow = (rowIndex) => {
     const rowToDuplicate = data[rowIndex]; // Récupère la ligne à dupliquer
-    const newData = [...data];
+    const newData = [...data]; // Copie du tableau de données existant
     newData.splice(rowIndex + 1, 0, { ...rowToDuplicate }); // Insère la ligne dupliquée juste après la ligne actuelle
     setData(newData); // Met à jour les données avec la nouvelle ligne insérée
   };
 
-  // Utilise useEffect pour mettre à jour les données si initialData change
   React.useEffect(() => {
     setData(initialData || []); // Met à jour les données si initialData change
   }, [initialData]);
@@ -51,6 +50,12 @@ export default function CSVTable({ initialData }) {
   const handleExportCSV = () => {
     const finalFilename = filename ? `${filename}.csv` : "data.csv";
     exportToCSV(data, finalFilename);
+
+    // Met à jour l'historique des fichiers exportés
+    setExportHistory((prevHistory) => [
+      ...prevHistory,
+      { filename: finalFilename, data: [...data] }, // Stocke également les données
+    ]);
   };
 
   // Je vérifie si le fichier CSV existe et si csv est inscrit dans l'input
@@ -79,7 +84,6 @@ export default function CSVTable({ initialData }) {
     return sorted;
   }, [data, sortConfig]);
 
-  // Fonction pour gérer le tri des données
   const handleSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -88,7 +92,6 @@ export default function CSVTable({ initialData }) {
     setSortConfig({ key, direction });
   };
 
-  // Fonction pour obtenir l'indicateur de tri
   const getSortIndicator = (header) => {
     if (sortConfig.key === header) {
       return sortConfig.direction === "ascending" ? "↑" : "↓";
@@ -100,11 +103,9 @@ export default function CSVTable({ initialData }) {
   const handleCellChange = (rowIndex, header, value) => {
     const newData = [...data];
     newData[rowIndex][header] = value; // Mettre à jour la cellule spécifique
-    setData(newData); // Mettre à jour le tableau de données
+    setData(newData); // Met à jour le tableau de données
   };
 
-  // Fonction pour filtrer les données
-  // useMemo pour éviter de recalculer à chaque rendu
   const filteredData = React.useMemo(() => {
     return sortedData.filter((row) =>
       Object.values(row).some((value) =>
@@ -113,12 +114,10 @@ export default function CSVTable({ initialData }) {
     );
   }, [sortedData, filterText]);
 
-  // Fonction pour gérer le début du glisser-déposer
   const handleDragStart = (rowIndex, header) => {
     setDraggingCell({ rowIndex, header });
   };
 
-  // Fonction pour gérer le relâchement du glisser-déposer
   const handleDrop = (targetRowIndex, targetHeader) => {
     if (draggingCell) {
       const newData = [...data];
@@ -138,7 +137,13 @@ export default function CSVTable({ initialData }) {
     e.preventDefault();
   };
 
-  // Affiche un message si le tableau est vide
+  // Fonction pour restaurer les données d'un historique sélectionné
+  const restoreDataFromHistory = (historyItem) => {
+    console.log("Restoring data:", historyItem.data); // Log pour vérifier les données
+    setData(historyItem.data); // Restaure les données du tableau
+    setFilename(historyItem.filename.replace(".csv", "")); // Met à jour le nom de fichier sans l'extension
+  };
+
   if (!data || data.length === 0) {
     return (
       <div className="emptyContainer">
@@ -152,7 +157,6 @@ export default function CSVTable({ initialData }) {
     );
   }
 
-  // Rendu du tableau
   return (
     <div className="tableContainer">
       <input
@@ -163,12 +167,11 @@ export default function CSVTable({ initialData }) {
         onChange={(e) => setFilterText(e.target.value)}
       />
       {filterText && (
-        <Typography className="msgFilter" variant="caption" color="primary">
+        <Typography variant="caption" color="primary">
           {filteredData.length} résultats trouvés
         </Typography>
       )}
       <table className="table" border="1" cellPadding="8" cellSpacing="0">
-        {/* Header soit NOM, PRENOM, AGE */}
         <thead>
           <tr>
             {headers.map((header) => (
@@ -254,6 +257,22 @@ export default function CSVTable({ initialData }) {
             <Button onClick={handleExportCSV}>
               <Typography>Exporter en CSV</Typography>
             </Button>
+          </div>
+          <div>
+            <Typography variant="subtitle">
+              Historique des téléchargements:
+            </Typography>
+            <ul>
+              {exportHistory.map((historyItem, index) => (
+                <li
+                  key={index}
+                  onClick={() => restoreDataFromHistory(historyItem)}
+                  style={{ cursor: "pointer", color: "blue" }}
+                >
+                  {historyItem.filename}
+                </li>
+              ))}
+            </ul>
           </div>
         </>
       )}
