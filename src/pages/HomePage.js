@@ -19,6 +19,7 @@ export default function HomePage() {
 
   return (
     <div>
+      {/* La navbar est située en haut de la page mais peut etre déplacée dans App.js, tout depend de la conception ou si elle est unique */}
       <Navbar />
       <Container>
         {/* HeroTop est un composant qui contient le titre et le sous-titre de la page */}
@@ -28,7 +29,7 @@ export default function HomePage() {
       {/* Container pour afficher les données du fichier CSV */}
       <Section>
         <Container>
-          <CSVTable data={csvData} />
+          <CSVTable initialData={csvData} />
         </Container>
       </Section>
     </div>

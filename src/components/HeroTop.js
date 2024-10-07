@@ -11,7 +11,7 @@ export default function HeroTop() {
         </Typography>
       </div>
       <div className="fade-in-delay">
-        <Typography color="primary" variant="description">
+        <Typography color="primary" variant="caption">
           Younicorns vous accompagne et réalise vos projets d'innovation ;{" "}
           <br /> de l'idéation jusqu'à la signature de vos premiers clients.
         </Typography>

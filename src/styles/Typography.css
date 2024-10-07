@@ -26,22 +26,23 @@ a {
 
 .button {
   font-weight: bold;
-  font-size: 1.25rem; /* équivalent à text-xl */
+  font-size: 1.25rem;
 }
 
 .description {
-  font-size: 1.125rem; /* équivalent à text-lg */
+  font-size: 12px;
+  font-family: "Raleway", sans-serif;
 }
 
 .caption {
   font-family: "Raleway", sans-serif;
   font-weight: 500;
-  font-size: 32px; /* équivalent à text-base */
+  font-size: 20px;
 }
 
 .default {
   font-weight: bold;
-  font-size: 1rem; /* équivalent à text-base */
+  font-size: 1rem;
 }
 
 .primary {

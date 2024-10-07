@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/FileUploader.css";
 import toast from "react-hot-toast";
 import Typography from "./Typography";
+import { exportToCSV } from "../utils/exportToCSV";
 
 // FileUploader est un composant qui permet à l'utilisateur de télécharger un fichier CSV.
 export default function FileUploader({ onFileUpload }) {

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Typography.css";
 
-export default function Typography({ variant, color, children }) {
+export default function Typography({ variant, className, color, children }) {
   let fontClass;
   let colorClass;
   switch (variant) {
@@ -38,5 +38,7 @@ export default function Typography({ variant, color, children }) {
       colorClass = "default2";
   }
 
-  return <div className={`${fontClass} ${colorClass}`}>{children}</div>;
+  return (
+    <div className={`${fontClass} ${className} ${colorClass}`}>{children}</div>
+  );
 }

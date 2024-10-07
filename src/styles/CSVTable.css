@@ -6,17 +6,50 @@
 }
 
 .table {
+  background-color: #c72c6c;
   table-layout: fixed;
   width: 100%;
   border-radius: 10px;
   margin-bottom: 20px;
-  padding: 20px 20px;
+  padding: 10px 10px;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
 
-.tableHeader {
-  padding-left: 20px;
-  padding-right: 20px;
+.table th {
+  /* background-color: #c72c6c; */
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  border-radius: 10px;
+  border: none;
+}
+
+.table td * {
+  border-bottom: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px 5px;
+  border: none;
+  outline: none;
+  cursor: grab;
+}
+
+.msgFilter {
+  margin-bottom: 20px;
+}
+
+.table td {
+  padding: 10px;
+  border: none;
+}
+
+.table th * {
+  color: #fff;
 }
 
 .thead {
@@ -34,11 +67,48 @@
   animation: fadeIn 0.5s forwards 0.5s;
   opacity: 0;
 }
+/* Je recupere la liste des noms pour mettre en gras les noms de famille */
+table td:nth-child(0) {
+  font-weight: bold;
+  background-color: #c72c6c;
+}
 
 @keyframes fadeIn {
   to {
     opacity: 1;
   }
+}
+
+.exportContainer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inputExport {
+  width: 70%;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.addLine {
+  margin-bottom: 50px;
+}
+
+.inputFilter {
+  width: 70%;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.spanCsv {
+  padding-top: 20px;
 }
 
 .emptyContainer {
@@ -47,4 +117,32 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .spanCsv {
+    padding-top: 32px;
+  }
+  .inputExport {
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .spanCsv {
+    padding-top: 32px;
+  }
+  .inputExport {
+    width: 50%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
 }

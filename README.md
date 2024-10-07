@@ -38,3 +38,19 @@ Point à améliorer, si besoin à l'avenir:
 Ressource externes:
 
 internet, Stackoverflow (Analyse les données d'un fichier, tableaux), Figma (background), site Younicorns (couleurs), Vercel (déploiement)
+
+<!-- 2 EME VERSION -->
+
+Dans cette nouvelle nouvelle version, j'ai ajouté des fonctionnalités:
+
+- Le site est responsive,
+- Le tableau est revisionné,
+- Ajout de comosants,
+- Ajout des boutons dupliquer et supprimer.
+- Ajout de la fonctionnalité de tri.
+- Ajout de la fonctionnalité de recherche.
+- Ajout du bouton d'exportation
+- Ajout du drag and drop
+- Ajout d'un bouton pour une nouvelle ligne
+- Tests techniques réalisés
+- Ajout du bouton up (en bas à droite)
