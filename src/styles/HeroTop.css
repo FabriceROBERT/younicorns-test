@@ -26,18 +26,17 @@
 
 @media (max-width: 768px) {
   .fade-in * {
-    font-size: 32px;
+    font-size: 20px;
   }
-
   .fade-in-delay * {
-    font-size: 16px;
+    font-size: 10px;
   }
-}
 
-.fade-in-delay {
-  opacity: 1;
-}
+  .fade-in-delay {
+    opacity: 1;
+  }
 
-.fade-in {
-  opacity: 1;
+  .fade-in {
+    opacity: 1;
+  }
 }

@@ -23,3 +23,25 @@
   cursor: pointer;
   padding: 8px 15px;
 }
+
+.button .primary {
+  background-color: #c72c6c;
+  color: #fff;
+}
+
+.secondary {
+  background-color: #ffffff;
+  color: #c72c6c;
+}
+
+.secondary * {
+  color: #c72c6c;
+}
+.button .tertiary {
+  background-color: #c72c6c;
+  color: #fff;
+}
+
+/* .tertiary {
+  background-color: gray;
+} */

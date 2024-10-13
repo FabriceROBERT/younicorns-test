@@ -4,74 +4,91 @@ import Wait from "../assets/GIF/Magic Soou.gif";
 import "../styles/CSVTable.css";
 import Button from "../components/Button";
 import exportToCSV from "../utils/exportToCSV";
+import exportToXLSX from "../utils/exportToXLSX";
 
 // Ce composant CSVTable permet d'afficher les données d'un fichier CSV dans un tableau.
 
 export default function CSVTable({ initialData }) {
-  const [data, setData] = React.useState(initialData || []); // Valeur par défaut pour éviter undefined
-  const [filename, setFilename] = React.useState("");
+  const [data, setData] = React.useState(initialData || []);
+  const [csvFilename, setCsvFilename] = React.useState("");
+  const [xlsxFilename, setXlsxFilename] = React.useState("");
   const [sortConfig, setSortConfig] = React.useState({
     key: null,
     direction: "ascending",
   });
   const [filterText, setFilterText] = React.useState("");
-  const [draggingCell, setDraggingCell] = React.useState(null); // État pour suivre la cellule en cours de déplacement
-  const [exportHistory, setExportHistory] = React.useState([]); // État pour l'historique des fichiers exportés
+  const [draggingCell, setDraggingCell] = React.useState(null);
+  const [exportHistory, setExportHistory] = React.useState([]);
 
-  // Cette fonction me permet d'ajouter une ligne au tableau
+  // Crée une nouvelle ligne avec les mêmes clés que les données initiales
   const newRowTemplate = Object.keys(initialData[0] || {}).reduce(
     (acc, key) => ({ ...acc, [key]: "" }),
     {}
   );
 
+  // Gère l'ajout d'une nouvelle ligne au tableau
   const handleAddRow = () => {
     setData([...data, { ...newRowTemplate }]);
   };
 
-  // Cette fonction me permet de supprimer une ligne du tableau
+  // Supprime une ligne du tableau
   const handleDeleteRow = (rowIndex) => {
     const updatedData = data.filter((_, index) => index !== rowIndex);
     setData(updatedData);
   };
 
-  // Fonction pour dupliquer une ligne et l'ajouter juste après la ligne sélectionnée
+  // Duplique une ligne existante dans le tableau
   const handleDuplicateRow = (rowIndex) => {
-    const rowToDuplicate = data[rowIndex]; // Récupère la ligne à dupliquer
-    const newData = [...data]; // Copie du tableau de données existant
-    newData.splice(rowIndex + 1, 0, { ...rowToDuplicate }); // Insère la ligne dupliquée juste après la ligne actuelle
-    setData(newData); // Met à jour les données avec la nouvelle ligne insérée
+    const rowToDuplicate = data[rowIndex];
+    const newData = [...data];
+    newData.splice(rowIndex + 1, 0, { ...rowToDuplicate });
+    setData(newData);
   };
 
+  // Met à jour les données lorsque les données initiales changent
   React.useEffect(() => {
-    setData(initialData || []); // Met à jour les données si initialData change
+    setData(initialData || []);
   }, [initialData]);
 
-  // Fonction pour exporter les données en CSV
+  // Gère l'exportation en CSV
   const handleExportCSV = () => {
-    const finalFilename = filename ? `${filename}.csv` : "data.csv";
+    // Si le nom de fichier n'est pas spécifié, utilise "data.csv"
+    const finalFilename = csvFilename ? `${csvFilename}.csv` : "data.csv";
     exportToCSV(data, finalFilename);
 
-    // Met à jour l'historique des fichiers exportés
     setExportHistory((prevHistory) => [
       ...prevHistory,
-      { filename: finalFilename, data: [...data] }, // Stocke également les données
+      { filename: finalFilename, data: [...data], fileType: "csv" },
     ]);
   };
 
-  // Je vérifie si le fichier CSV existe et si csv est inscrit dans l'input
-  const handleFilenameChange = (e) => {
-    const value = e.target.value;
-    if (value.endsWith(".csv")) {
-      setFilename(value.slice(0, -4)); // Supprime ".csv" si l'utilisateur l'ajoute
-    } else {
-      setFilename(value);
-    }
+  // Gère l'exportation en XLSX
+  const handleExportXLSX = () => {
+    const finalFilename = xlsxFilename ? `${xlsxFilename}.xlsx` : "data.xlsx";
+    exportToXLSX(data, finalFilename);
+
+    setExportHistory((prevHistory) => [
+      ...prevHistory,
+      { filename: finalFilename, data: [...data], fileType: "xlsx" },
+    ]);
   };
 
-  // Je récupère data du tableau, si elle existe et puis je vais la mapper juste après
+  // Gère le changement de nom de fichier pour les fichiers CSV
+  const handleCsvFilenameChange = (e) => {
+    const value = e.target.value;
+    setCsvFilename(value.endsWith(".csv") ? value.slice(0, -4) : value);
+  };
+
+  // Gère le changement de nom de fichier pour les fichiers XLSX
+  const handleXlsxFilenameChange = (e) => {
+    const value = e.target.value;
+    setXlsxFilename(value.endsWith(".xlsx") ? value.slice(0, -5) : value);
+  };
+
+  // Obtient les en-têtes du tableau en fonction des données
   const headers = data && data.length > 0 ? Object.keys(data[0]) : [];
 
-  // Cette fonction me permet de trier les données du tableau
+  // Trie les données en fonction de la configuration actuelle
   const sortedData = React.useMemo(() => {
     if (!sortConfig.key) return data;
     const sorted = [...data].sort((a, b) => {
@@ -84,6 +101,7 @@ export default function CSVTable({ initialData }) {
     return sorted;
   }, [data, sortConfig]);
 
+  // Gère le tri des colonnes
   const handleSort = (key) => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -92,6 +110,7 @@ export default function CSVTable({ initialData }) {
     setSortConfig({ key, direction });
   };
 
+  // Affiche un indicateur de tri
   const getSortIndicator = (header) => {
     if (sortConfig.key === header) {
       return sortConfig.direction === "ascending" ? "↑" : "↓";
@@ -99,13 +118,14 @@ export default function CSVTable({ initialData }) {
     return null;
   };
 
-  // Fonction pour gérer le changement de cellule
+  // Gère les modifications d'une cellule du tableau
   const handleCellChange = (rowIndex, header, value) => {
     const newData = [...data];
-    newData[rowIndex][header] = value; // Mettre à jour la cellule spécifique
-    setData(newData); // Met à jour le tableau de données
+    newData[rowIndex][header] = value;
+    setData(newData);
   };
 
+  // Filtre les données en fonction du texte de recherche
   const filteredData = React.useMemo(() => {
     return sortedData.filter((row) =>
       Object.values(row).some((value) =>
@@ -114,10 +134,12 @@ export default function CSVTable({ initialData }) {
     );
   }, [sortedData, filterText]);
 
+  // Gère le début d'un drag pour déplacer une cellule
   const handleDragStart = (rowIndex, header) => {
     setDraggingCell({ rowIndex, header });
   };
 
+  // Gère le drop lors du déplacement d'une cellule
   const handleDrop = (targetRowIndex, targetHeader) => {
     if (draggingCell) {
       const newData = [...data];
@@ -127,23 +149,28 @@ export default function CSVTable({ initialData }) {
       newData[draggingCell.rowIndex][draggingCell.header] = targetValue;
       newData[targetRowIndex][targetHeader] = sourceValue;
 
-      setData(newData); // Met à jour les données après l'échange
+      setData(newData);
       setDraggingCell(null);
     }
   };
 
-  // Fonction pour gérer le drag over (maintenir en deplacant la souris)
+  // Empêche le comportement par défaut lors du dragover
   const handleDragOver = (e) => {
     e.preventDefault();
   };
 
-  // Fonction pour restaurer les données d'un historique sélectionné
+  // Restaure les données à partir de l'historique des exportations
   const restoreDataFromHistory = (historyItem) => {
     console.log("Restoring data:", historyItem.data);
-    setData(historyItem.data); // Restaure les données du tableau
-    setFilename(historyItem.filename.replace(".csv", "")); // Met à jour le nom de fichier sans l'extension
+    setData(historyItem.data);
+    if (historyItem.fileType === "csv") {
+      setCsvFilename(historyItem.filename.replace(".csv", ""));
+    } else {
+      setXlsxFilename(historyItem.filename.replace(".xlsx", ""));
+    }
   };
 
+  // Affichage lorsqu'il n'y a pas de données
   if (!data || data.length === 0) {
     return (
       <div className="emptyContainer">
@@ -166,6 +193,7 @@ export default function CSVTable({ initialData }) {
         value={filterText}
         onChange={(e) => setFilterText(e.target.value)}
       />
+      {/* Selon le nombre de lignes recherchées, on affiche un nombre différent de lignes */}
       {filterText && (
         <Typography variant="caption" color="primary">
           {filteredData.length} résultats trouvés
@@ -173,7 +201,6 @@ export default function CSVTable({ initialData }) {
       )}
       <table className="table" border="1" cellPadding="8" cellSpacing="0">
         <thead>
-          {/* NOM, Prenom, Age */}
           <tr>
             {headers.map((header) => (
               <th
@@ -183,19 +210,13 @@ export default function CSVTable({ initialData }) {
                 style={{ fontWeight: "bold" }}
               >
                 {header} {getSortIndicator(header)}
-                <br />
-                <Typography className="" color="primary" variant="description">
-                  Filtrer
-                </Typography>
               </th>
             ))}
             <th className="thead">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {/* Je map la liste des lignes */}
           {filteredData.map((row, rowIndex) => (
-            // rowindex est l'index de la ligne
             <tr key={rowIndex}>
               {headers.map((header, colIndex) => (
                 <td
@@ -225,6 +246,7 @@ export default function CSVTable({ initialData }) {
                 </Button>
                 <Button
                   variant="small"
+                  color="secondary"
                   onClick={() => handleDuplicateRow(rowIndex)}
                 >
                   Dupliquer
@@ -240,23 +262,38 @@ export default function CSVTable({ initialData }) {
       {data.length > 0 && (
         <>
           <div>
-            {data.length === 1
-              ? `Le tableau contient ${data.length} ligne`
-              : `Nombre de lignes de ce tableau : ${data.length}`}
+            {/* Je fais une condition pour savoir si le tableau contient une ligne ou plusieurs lignes, si il n'y a qu'une ligne, je l'affiche en singulier, sinon je l'affiche en pluriel */}
+            {filteredData.length === 1
+              ? `Le tableau contient ${filteredData.length} ligne`
+              : `Le tableau contient ${filteredData.length} lignes`}
           </div>
           <div className="exportContainer">
             <input
               className="inputExport"
               placeholder="Nomme ton fichier"
-              value={filename}
+              value={csvFilename}
               type="text"
-              onChange={handleFilenameChange}
+              onChange={handleCsvFilenameChange}
             />
-            {/* Permet de notifier à l'utilisateur que l'extension est deja  ajouté le .csv */}
+
             <span className="spanCsv">.csv</span>
 
             <Button onClick={handleExportCSV}>
               <Typography>Exporter en CSV</Typography>
+            </Button>
+          </div>
+          <div className="exportContainer">
+            <input
+              className="inputExport"
+              placeholder="Nomme ton fichier"
+              value={xlsxFilename}
+              type="text"
+              onChange={handleXlsxFilenameChange}
+            />
+            {/* Je reprends la classe spanCsv pour le .xlsx, meme si il est préférable de créer une autre classe séparée */}
+            <span className="spanCsv">.xlsx</span>
+            <Button color="secondary" onClick={handleExportXLSX}>
+              <Typography>Exporter en XLSX</Typography>
             </Button>
           </div>
           <div>
@@ -265,15 +302,32 @@ export default function CSVTable({ initialData }) {
               color="primary"
               className="historyTitle"
             >
-              Historique des téléchargements:
+              Historique des téléchargements :
             </Typography>
+            {/* Si les fichiers sont égaux à 0 : */}
+            {exportHistory.length === 0 && (
+              <Typography variant="description" color="primary">
+                Aucun historique de téléchargement.
+              </Typography>
+            )}
+            {/*  Si les fichiers sont superieurs à 0 : */}
+            {exportHistory.length > 0 && (
+              <Typography
+                variant="description"
+                color="secondary"
+                className="exportHistory"
+              >
+                Clique sur un ficher pour le visionner.
+              </Typography>
+            )}
             <ul>
               {exportHistory.map((historyItem, index) => (
                 <li
                   className="exportHistory"
                   key={index}
                   onClick={() => restoreDataFromHistory(historyItem)}
-                  style={{ cursor: "pointer", marginTop: "20px" }}
+                  // J'ai crée une classe exportHistory pour pouvoir styliser le lien de téléchargement
+                  style={{}}
                 >
                   {historyItem.filename}
                 </li>

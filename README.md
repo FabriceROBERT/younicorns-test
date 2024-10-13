@@ -41,11 +41,12 @@ internet, Stackoverflow (Analyse les données d'un fichier, tableaux), Figma (ba
 
 <!-- 2 EME VERSION -->
 
-Dans cette nouvelle nouvelle version, j'ai ajouté des fonctionnalités:
+Dans cette nouvelle version, j'ai ajouté les fonctionnalités:
 
 - Le site est responsive,
+- Limite de tailles de fichier,
 - Le tableau est revisionné,
-- Ajout de comosants,
+- Ajout de composants,
 - Ajout des boutons dupliquer et supprimer.
 - Ajout de la fonctionnalité de tri.
 - Ajout de la fonctionnalité de recherche.
@@ -55,3 +56,16 @@ Dans cette nouvelle nouvelle version, j'ai ajouté des fonctionnalités:
 - Tests techniques réalisés
   -Histoire des téléchargements
 - Ajout du bouton up (en bas à droite)
+
+<!-- 3 EME VERSION -->
+
+- Amélioration de la responsivité
+- Ajout du "3 bands" et menu pour (la version mobile)
+- Ajout du bouton de téléchargement pour fichier xlsx
+- Ajout du marquee pour les partenaires externes (https://www.npmjs.com/package/react-fast-marquee)
+- Ajout du footer
+- Ajout des reseaux sociaux dans le footer
+- Ajout des liens footers
+- Améliration du composant Typographie pour les variants link
+- L'utilisateur peut revenir sur un tableau précédent, une fois le tableau téléchargé
+- Ajout du logo comme favicon

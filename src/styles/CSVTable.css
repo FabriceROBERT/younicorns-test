@@ -1,8 +1,12 @@
 .imageContainer {
   position: relative;
   /* background-color: red; */
-  width: 500px;
+  width: 200px;
   height: 160px;
+}
+
+.emptyContainer * {
+  font-size: 16px;
 }
 
 .table {
@@ -76,6 +80,15 @@
   border: none;
 }
 
+.exportHistory {
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.exportHistory:hover {
+  color: #c72c6c;
+}
+
 .tableContainer {
   animation: fadeIn 0.5s forwards 0.5s;
   opacity: 0;
@@ -130,6 +143,7 @@ table td:nth-child(0) {
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
